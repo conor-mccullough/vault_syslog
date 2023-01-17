@@ -8,7 +8,7 @@ resource "aws_instance" "conor-tf-vault" {
   count          = 1
   ami            = "ami-0ab04b3ccbadfae1f"
   instance_type  = "t3.micro"
-  key_name       = "conor-seoul-keys"
+  key_name       = "CHANGEME"
   associate_public_ip_address = true
   subnet_id = "${aws_subnet.conor-subnet.id}"
   # security_groups is an array, so it needs to be in square brackets:
@@ -23,7 +23,7 @@ resource "aws_instance" "conor-tf-vault" {
     host = "${self.public_ip}"
     type = "ssh"
     user = "ubuntu"
-    private_key = "${file("/Users/conormccullough/Documents/keys/conor-seoul-keys.pem")}"
+    private_key = "${file("/path/to/key/CHANGEME")}"
     timeout = "2m"
 
   }
