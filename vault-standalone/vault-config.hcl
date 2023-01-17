@@ -1,3 +1,5 @@
+# Dummy config file for reference
+
 disable_mlock = true
 ui            = true
 
@@ -16,6 +18,6 @@ storage "raft" {
 # Again, add variable here for inter-node comms
 cluster_addr = "http://127.0.0.1:8201"
 
-api_addr = "http://43.201.152.135:8200"
+api_addr = "http://public_ip_here:8200"
 
 license_path = "/opt/vault/vault-license.hcl"
