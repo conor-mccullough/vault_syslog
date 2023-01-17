@@ -1,4 +1,3 @@
-"/opt/vault/vault-config.hcl" 21L, 546B                                                                                                                                                          5,24          All
 disable_mlock = true
 ui            = true
 
