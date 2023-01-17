@@ -24,7 +24,6 @@ resource "aws_instance" "conor-tf-vault" {
     user = "ubuntu"
     private_key = "${file("/path/to/key/CHANGEME")}"
     timeout = "2m"
-
   }
 
   # Provisioners to place the license & systemd service files on the target system
@@ -39,7 +38,6 @@ resource "aws_instance" "conor-tf-vault" {
 
   # Install and configure the Vault server
   user_data = file("./bootstrap.sh")
-
 } 
 
 # Output the public IP so that you don't have to open the AWS console to find it
