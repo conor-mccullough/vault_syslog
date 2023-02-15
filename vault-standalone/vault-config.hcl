@@ -11,8 +11,8 @@ listener "tcp" {
 storage "raft" {
   path = "/opt/vault"
   node_id = "vault_1"
-  # define system variable with '$(hostname -f)' or something in `user_data`, then apply variable here for multi-node deployment:
-#  node_id = "vault_${}" or however HCL vars are referenced
+  # TODO: define system variable with '$(hostname -f)' or something in `user_data`, then apply variable here for multi-node deployment:
+#  node_id = "vault_${}" or however HCL vars need to be referenced
 }
 
 # Again, add variable here for inter-node comms
