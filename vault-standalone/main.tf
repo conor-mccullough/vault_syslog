@@ -8,7 +8,7 @@ resource "aws_instance" "conor-tf-vault" {
   count          = 1
   ami            = "ami-0ab04b3ccbadfae1f"
   instance_type  = "t3.micro"
-  key_name       = "CHANGEME"
+  key_name       = "conor-seoul-keys"
   associate_public_ip_address = true
   subnet_id = "${aws_subnet.conor-subnet.id}"
   # security_groups is an array, so it needs to be in square brackets:
@@ -22,7 +22,7 @@ resource "aws_instance" "conor-tf-vault" {
     host = "${self.public_ip}"
     type = "ssh"
     user = "ubuntu"
-    private_key = "${file("/path/to/key/CHANGEME")}"
+    private_key = "${file("/Users/conormccullough/Documents/keys/conor-seoul-keys.pem")}"
     timeout = "2m"
   }
 
@@ -34,6 +34,11 @@ resource "aws_instance" "conor-tf-vault" {
   provisioner "file" {
     source = "./vault.service"
     destination = "/tmp/vault.service"
+  }
+
+  provisioner "file" {
+    source = "./vault-logrotate"
+    destination = "/tmp/vault-log"
   }
 
   # Install and configure the Vault server

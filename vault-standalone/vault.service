@@ -1,13 +1,38 @@
 [Unit]
-Description=Vault Server on AWS
+Description=Vault
 Documentation=https://vault.io
+Requires=network-online.target
+After=network-online.target
+ConditionFileNotEmpty=/opt/vault/vault-config.hcl
 
 [Service]
 User=vault
 Group=vault
-ExecStart=/usr/local/bin/vault server -config=/opt/vault/vault-config.hcl -log-level=debug
-ExecReload=/bin/kill --signal HUP \$MAINPID
+ProtectSystem=full
+ProtectHome=read-only
+PrivateTmp=yes
+PrivateDevices=yes
+SecureBits=keep-caps
+AmbientCapabilities=CAP_IPC_LOCK
+CapabilityBoundingSet=CAP_SYSLOG CAP_IPC_LOCK
+NoNewPrivileges=yes
+ExecStart=/usr/local/bin/vault server -config=/opt/vault/vault-config.hcl
+ExecReload=/bin/kill --signal HUP
+KillMode=process
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+# StartLimitIntervalSec= was added as part of systemd v230
+# In systemd v229 and below, you can only use StartLimitInterval=
+# StartLimitIntervalSec=60
+StartLimitInternal=60
 LimitNOFILE=65536
+Environment="VAULT_LOG_LEVEL=info"
+# StandardOutPut/StandardError was added as part of version 236 or newer
+StandardOutput=file:/opt/vault/vault_stdout.log
+StandardError=file:/opt/vault/vault_stderr.log
 
 [Install]
 WantedBy=multi-user.target
+

@@ -6,9 +6,9 @@ This provisions a standalone Vault instance with a Raft back-end.
 
 Each value marked 'CHANGEME' needs to be modified prior to running:
 
-1. A license key needs to be added
-2. You need to actually create the key in AWS
-3. The path needs to be updated to point towards the location of the key on your local machine
+1. A Vault license key needs to be added
+2. You need to actually create the SSH key in AWS
+3. The path needs to be updated to point towards the location of the SSH key on your local machine
 
 # An Important Note
 

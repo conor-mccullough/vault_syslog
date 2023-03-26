@@ -11,8 +11,8 @@ source /home/ubuntu/.bashrc
 apt-get update -y
 apt install jq -y
 apt-get install unzip
-wget https://releases.hashicorp.com/vault/1.12.2+ent/vault_1.12.2+ent_linux_amd64.zip
-unzip vault_1.12.2+ent_linux_amd64.zip
+wget https://releases.hashicorp.com/vault/1.7.3+ent/vault_1.7.3+ent_linux_amd64.zip
+unzip vault_1.7.3+ent_linux_amd64.zip
 
 # Create Vault directory and move files where they need to be
 mv vault /usr/local/bin/ 
@@ -45,6 +45,8 @@ api_addr = "http://$MY_IP:8200"
 license_path = "/opt/vault/vault-license.hcl"
 EOF
 
+mv /tmp/vault-logrotate /etc/logrotate.d/vault-logrotate
+chown root:root /etc/logrotate.d/vault-logrotate
 #source ~/.bashrc
 
 # Update user permissions and add groups
