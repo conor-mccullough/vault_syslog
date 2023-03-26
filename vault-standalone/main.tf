@@ -1,6 +1,6 @@
 # Configure AWS provider
 provider "aws" {
-  region = "ap-northeast-2"
+  region = "<CHANGEME>"
 }
 
 # Create an EC2 instance for each Vault node, define its security groups, and provide it with a public IP
@@ -8,7 +8,7 @@ resource "aws_instance" "conor-tf-vault" {
   count          = 1
   ami            = "ami-0ab04b3ccbadfae1f"
   instance_type  = "t3.micro"
-  key_name       = "conor-seoul-keys"
+  key_name       = "<CHANGEME>"
   associate_public_ip_address = true
   subnet_id = "${aws_subnet.conor-subnet.id}"
   # security_groups is an array, so it needs to be in square brackets:
@@ -22,7 +22,7 @@ resource "aws_instance" "conor-tf-vault" {
     host = "${self.public_ip}"
     type = "ssh"
     user = "ubuntu"
-    private_key = "${file("/Users/conormccullough/Documents/keys/conor-seoul-keys.pem")}"
+    private_key = "${file("/LOCAL/PATH/TO/KEYS/<CHANGEME>")}"
     timeout = "2m"
   }
 

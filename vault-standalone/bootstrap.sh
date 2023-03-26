@@ -32,7 +32,7 @@ listener "tcp" {
 
 storage "raft" {
   path = "/opt/vault"
-  node_id = "vault_1"
+  node_id = "conor_vault_1"
   # define system variable with \$(hostname -f) or something in user_data, then apply variable here for multi-node deployment:
 #  node_id = vault_\${} or however HCL vars are referenced
 }
@@ -62,5 +62,5 @@ systemctl start vault.service
 # Install Vault command autocomplete, initialise Vault, unseal Vault, and print the token to /tmp/VaultCreds.json
 vault -autocomplete-install && source $HOME/.bashrc
 vault operator init -key-shares=1 -key-threshold=1 -format=json > /tmp/VaultCreds.json
-vault operator unseal $(cat /tmp/VaultCreds.json | jq -r .unseal_keys_b64[0])
+vault operator unseal $(cat VaultCreds.json | jq -r .unseal_keys_b64[0])
 export VAULT_TOKEN=$(cat /tmp/VaultCreds.json | jq -r .root_token)
