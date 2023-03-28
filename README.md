@@ -54,4 +54,4 @@ Intermittent reproduction, exact steps are:
 3. Stop Vault
 4. Start vault
 
-At each step using the `file` command on the target log files in the directory, watching for them to turn to the `data` filetype.
+In a separate terminal run the `watch -d file ./*` command on the target log files in the directory, watching for them to turn to the `data` filetype.
