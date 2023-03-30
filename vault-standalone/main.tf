@@ -6,7 +6,7 @@ provider "aws" {
 # Create an EC2 instance for each Vault node, define its security groups, and provide it with a public IP
 resource "aws_instance" "conor-tf-vault" {
   count          = 1
-  ami            = "ami-0ab04b3ccbadfae1f"
+  ami            = "<CHANGEME>"
   instance_type  = "t3.micro"
   key_name       = "<CHANGEME>"
   associate_public_ip_address = true
