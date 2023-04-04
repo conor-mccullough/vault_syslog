@@ -38,7 +38,7 @@ resource "aws_instance" "conor-tf-vault" {
 
   provisioner "file" {
     source = "./vault-logrotate"
-    destination = "/tmp/vault-log"
+    destination = "/tmp/vault-logrotate"
   }
 
   # Install and configure the Vault server
